@@ -44,6 +44,16 @@ server.get("/api/cohorts", async (req, res) => {
   }
 });
 
+server.get("/api/students", async (req, res) => {
+    // Get the students from the database
+    try {
+      const students = await db("students"); // all the records from the table
+      res.status(200).json(students);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  });
+
 server.get('/api/cohorts/:id', async (req, res) => {
     // get the roles from the database 
     try {
