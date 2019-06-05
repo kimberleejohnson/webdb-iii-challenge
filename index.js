@@ -97,6 +97,13 @@ server.get('/api/students/:id', async (req, res) => {
     }
 })
 
+// function getUserPosts(userId) {
+//     return db('posts as p')
+//       .join('users as u', 'u.id', 'p.user_id')
+//       .select('p.id', 'p.text', 'u.name as postedBy')
+//       .where('p.user_id', userId);
+//   }
+
 // Displays all the students within a cohort 
 server.get('/api/cohorts/:id/students', async (req, res) => {
     // get the students from the database 
