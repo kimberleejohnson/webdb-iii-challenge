@@ -165,6 +165,21 @@ server.delete('/api/cohorts/:id', async (req, res) => {
     } catch (error) {}
 }); 
 
+// STRETCH deleting a student
+server.delete('/api/students/:id', async (req, res) => {
+    try {
+        const count = await db('students')
+        .where({ id: req.params.id})
+        .del(); 
+
+        if (count > 0) {
+            res.status(204).end(); 
+        } else {
+            res.status(404).json({message: "Records not found"})
+        }
+    } catch (error) {} 
+})
+
 // Telling my server where to listen  
 const port = process.env.PORT || 3000;
 server.listen(port, () =>
