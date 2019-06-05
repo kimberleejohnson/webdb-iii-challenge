@@ -15,7 +15,20 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 
-// Setting up my server 
+// ROUTES 
+
+// GET (R in CRUD)
+server.get("/api/cohorts", async (req, res) => {
+  // Get the cohorts from the database
+  try {
+    const cohorts = await db("cohorts"); // all the records from the table
+    res.status(200).json(cohorts);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// Telling my server where to listen  
 const port = process.env.PORT || 3000;
 server.listen(port, () =>
   console.log(`\n** API running on http://localhost:${port} **\n`)

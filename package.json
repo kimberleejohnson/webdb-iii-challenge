@@ -1,20 +1,25 @@
 {
   "name": "webdb-iii-challenge",
   "version": "1.0.0",
-  "description": "Challenge Project for Web DB III Module",
+  "description": "## Topics",
   "main": "index.js",
-  "scripts": {
-    "server": "nodemon index.js"
-  },
-  "keywords": [],
-  "author": "Lambda School",
   "dependencies": {
-    "express": "^4.16.4",
-    "helmet": "^3.16.0",
     "knex": "^0.16.5",
     "sqlite3": "^4.0.8"
   },
-  "devDependencies": {
-    "nodemon": "^1.19.0"
-  }
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimberleejohnson/webdb-iii-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimberleejohnson/webdb-iii-challenge/issues"
+  },
+  "homepage": "https://github.com/kimberleejohnson/webdb-iii-challenge#readme"
 }
