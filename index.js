@@ -17,6 +17,22 @@ server.use(express.json());
 
 // ROUTES 
 
+// POST (C IN CRUD)
+server.post('/api/cohorts', async (req, res) => {
+    try {
+        const [id] = await db('cohorts').insert(req.body); 
+
+        const cohort = await db('cohorts')
+        .where({ id })
+        .first(); 
+
+        res.status(201).json(cohort); 
+    } catch (error) {
+        const message = errors[error.errno] || 'We ran into an error :('; 
+        res.status(500).json({ message, error }); 
+    }
+}); 
+
 // GET (R in CRUD)
 server.get("/api/cohorts", async (req, res) => {
   // Get the cohorts from the database
