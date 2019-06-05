@@ -44,6 +44,7 @@ server.get("/api/cohorts", async (req, res) => {
   }
 });
 
+// Displaying a list of all my students 
 server.get("/api/students", async (req, res) => {
     // Get the students from the database
     try {
@@ -55,7 +56,7 @@ server.get("/api/students", async (req, res) => {
   });
 
 server.get('/api/cohorts/:id', async (req, res) => {
-    // get the roles from the database 
+    // get the cohorts from the database 
     try {
         const cohort = await db('cohorts')
         .where({ id: req.params.id })
@@ -65,6 +66,20 @@ server.get('/api/cohorts/:id', async (req, res) => {
         res.status(500).json(error); 
     }
 }); 
+
+// Displays all the students within a cohort 
+server.get('/api/cohorts/:id/students', async (req, res) => {
+    // get the students from the database 
+    try {
+        const students = await db('students')
+        .select()
+        .where({ cohort_id: req.params.id })
+        res.status(200).json(students); 
+    } catch (error) {
+        res.status(500).json(error); 
+    }
+}); 
+
 
 // PUT (U in crud) 
 server.put('/api/cohorts/:id', async (req, res) => {
