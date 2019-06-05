@@ -28,6 +28,18 @@ server.get("/api/cohorts", async (req, res) => {
   }
 });
 
+server.get('/api/cohorts/:id', async (req, res) => {
+    // get the roles from the database 
+    try {
+        const cohort = await db('cohorts')
+        .where({ id: req.params.id })
+        .first(); 
+        res.status(200).json(cohort); 
+    } catch (error) {
+        res.status(500).json(error); 
+    }
+}); 
+
 // Telling my server where to listen  
 const port = process.env.PORT || 3000;
 server.listen(port, () =>
