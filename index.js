@@ -97,7 +97,6 @@ server.get('/api/students/:id', async (req, res) => {
     }
 })
 
-
 // Displays all the students within a cohort 
 server.get('/api/cohorts/:id/students', async (req, res) => {
     // get the students from the database 
@@ -130,6 +129,26 @@ server.put('/api/cohorts/:id', async (req, res) => {
         }
     } catch (error) {} 
 }); 
+
+// STRETCH UPDATING STUDENT 
+server.put('/api/students/:id', async (req, res) => {
+    try {
+        const count = await db('students')
+        .where({ id: req.params.id })
+        .update(req.body);
+
+        if (count > 0) {
+            const student = await db ('students')
+            .where({ id: req.params.id })
+            .first(); 
+
+            res.status(200).json(student);
+        } else {
+            res.status(404).json({ message: "Records not found!"});
+        }
+    } catch (error) {}
+});
+
 
 // DELETE (D IN CRUD)
 server.delete('/api/cohorts/:id', async (req, res) => {
