@@ -4,6 +4,7 @@
   "description": "## Topics",
   "main": "index.js",
   "dependencies": {
+    "helmet": "^3.18.0",
     "knex": "^0.16.5",
     "sqlite3": "^4.0.8"
   },
