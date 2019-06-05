@@ -56,6 +56,25 @@ server.get('/api/cohorts/:id', async (req, res) => {
     }
 }); 
 
+// PUT (U in crud) 
+server.put('/api/cohorts/:id', async (req, res) => {
+    try {
+        const count = await db('cohorts')
+        .where({ id: req.params.id })
+        .update(req.body); 
+
+        if (count > 0) {
+            const cohort = await db('cohorts')
+            .where({ id: req.params.id })
+            .first(); 
+
+            res.status(200).json(cohort);
+        } else {
+            res.status(404).json({ message: "Records not found!" });
+        }
+    } catch (error) {} 
+}); 
+
 // Telling my server where to listen  
 const port = process.env.PORT || 3000;
 server.listen(port, () =>
